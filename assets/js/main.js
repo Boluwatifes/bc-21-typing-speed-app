@@ -18,7 +18,7 @@ $(function(){
 	const typingText = $('#typingText');
 	typingText.bind('copy cut paste', (e) => e.preventDefault());
 	typingText.on('focus', () => {
-		var num = 10;
+		var num = 60;
 		var done;
 		const removeNum = () => {
 			let timeCont = $('#timer span');
