@@ -1,0 +1,74 @@
+*:before, *:after, *{ box-sizing: border-box; }
+html, body { padding:0; margin:0; }
+
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto');
+
+.clear{ clear:both; }
+.header{
+	background-color: #0c6;
+	height: auto;
+}
+
+.header-nav{
+	display: block;
+}
+
+.header-nav li{
+	display: inline-block;
+	float: left;
+	list-style-type: none;
+}
+
+.header-nav li a{
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 23px;
+	padding: 30px 12px;
+}
+
+.header-nav li a:hover{
+	background-color: #fff;
+	color:#0c6;
+	transition: 0.3s linear;
+}
+
+.header-left{
+	padding: 10px;
+}
+
+.header-left img{
+	width:60px;
+	height: 60px;
+}
+
+@media (min-width: 768px;) {
+	.header-left img{
+		width: 60px;
+		height: 60px;
+	}
+}
+
+@media (min-width: 992px) {
+
+	.header-left img{
+		width: 80px;
+		height: 80px;
+	}
+
+	.header-right{
+		
+	}
+	.header-nav li a{
+		font-size: 15px;
+		padding: 40px 15px;
+	}
+	.header-nav li a:hover{
+		background-color: #fff;
+		color:#0c6;
+		transition: 0.3s linear;
+	}
+}
