@@ -1,0 +1,34 @@
+{
+  "name": "bc-21-typing-speed-app",
+  "version": "1.0.0",
+  "description": "This is an app that determines a user's typing speed",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boluwatifes/bc-21-typing-speed-app.git"
+  },
+  "keywords": [
+    "Typing",
+    "Speed",
+    "Node",
+    "App",
+    "Typing",
+    "Speed",
+    "App"
+  ],
+  "author": "Bamidele Daniel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boluwatifes/bc-21-typing-speed-app/issues"
+  },
+  "homepage": "https://github.com/Boluwatifes/bc-21-typing-speed-app#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "firebase": "^3.8.0"
+  }
+}
