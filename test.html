@@ -1,0 +1,99 @@
+<script type="text/javascript">
+	(function(){
+		if(!sessionStorage.name) window.location.href = '/';
+	}())
+</script>
+<!DOCTYPE html>
+<html>
+<head lang="en-US">
+	<meta charset="utf-8">
+	<title>BC-21 TYPING SPEED APP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="This is an app that test your tying speed">
+	<meta name="Author" content="Bamidele Daniel">
+	<meta name="keywords" content="Typing, Typing Speed, Typing Speed App, Bamidele Daniel">
+	<link rel="icon" type="favicon/ico" href="images/gears.gif">
+
+	<!-- Bootstrap CSS CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Font Awesome CSS CDN -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Main App css -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--
+	<script>
+		const restrictKeys = function (e) {
+		let eCode = e.keyCode || e.which;
+		if(eCode === 8 || eCode === 46){
+			return false;
+		}
+		return true;
+	}
+	</script>
+	-->
+</head>
+<body>
+	<section id="header">
+		<header>
+			<div class="col-md-12 header">
+				<div class="col-md-4 col-sm-2 col-xs-2 header-left">
+					<img src="images/gears.gif" alt="Typing Speed Logo">
+				</div>
+				<div class="col-md-8 col-sm-10 col-xs-10 header-right">
+					<ul class="header-nav">
+						<li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+						<li><a href="/test"><i class="fa fa-hand-o-up" aria-hidden="true"></i> Take Test</a></li>
+						<li><a href="/leaderboard"><i class="fa fa-tachometer" aria-hidden="true"></i> LeaderBoard</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</header>
+	</section>
+
+	<section id="#main">
+		<div class="container-fluid main-cont">
+			<div class="main">
+				<div class="timer" id="timer"><span>60s</span></div>
+				<div class="name-holder" id="name-holder">
+					<p>You have 1 minute to do your typing. The timer starts when you start typing!</p>
+				</div>
+				<div class="speedbox">
+					<textarea class="form-control" rows="6" style="font-size: 22px;" disabled="" id="copyText">One day Jimmy Westfielder was walking home from school and saw a big, brown dog walking behind him. At first he was a bit startled at the fact that the dog was just calmly walking behind him. Jimmy stopped and turned around to face the dog. When Jimmy looked into the dog&#039;s eyes he became  Cognizant that the dog meant no harm at all. Jimmy bent down to the dog&#039;s level and put one of his hands out. As soon as Jimmy did so the dog began to lick  Jimmy&#039;s hand. Jimmy then checked to see if the dog had a collar, which he didn&#039;t, and when he didn&#039;t find a collar he then said, &quot;Hello my name is Jimmy.
+					</textarea>
+				</div>
+				<div class="speedbox">
+					<textarea id="typingText" class="form-control" rows="6" placeholder="Start Typing Here"></textarea>
+				</div>
+				<div class="clear"></div>
+				<div class="col-md-12 footer">
+					<p>Copyright &copy; 2017 Andela Boot-Camp 21 Typing Speed App - All rights Reserved</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+	</section>
+
+	<section id="footer">
+		<div class="container-fluid">
+			
+		</div>
+	</section>
+
+<!-- jQuery CDN -->
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<!-- Bootstrap Javascript CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -54,7 +54,7 @@ html, body { padding:0; margin:0; }
 }
 
 .main{
-	height: 540px;
+	min-height: 567px;
 	background-color: rgba(0, 0, 0, 0.7);
 	padding-top: 100px;
 }
@@ -100,6 +100,68 @@ html, body { padding:0; margin:0; }
 	height: 40px;
 }
 
+.name-holder{
+	max-width: 400px;
+	margin: 0 auto;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.green{
+	color: #0c6;
+}
+
+.speedbox{
+	max-width: 400px;
+	margin: 10px auto;
+	background-color:white;
+	font-size: 22px;
+}
+
+#typingText{
+	font-size: 22px;
+	font-weight: bold;
+	color: green;
+}
+
+.timer{
+	position: fixed;
+	display: block;
+	top:40%;
+	height: 60px;
+	width: 60px;
+	background-color: white;
+	font-size: 24px;
+	padding: 10px;
+	border-radius: 60px;
+	line-height: 40px;
+	color: green;
+}
+
+.footer{
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-size: 15px;
+	color: #fff;
+	margin-top: 50px;
+}
+
+.loading{
+	height: 250px;
+	padding: 20px;
+	padding-top: 60px;
+	text-align: center;
+	background-color: #fff;
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+.loading img{
+	margin: 0 auto;;
+}
+
 @media (min-width: 768px;) {
 	.header-left img{
 		width: 60px;
@@ -128,5 +190,9 @@ html, body { padding:0; margin:0; }
 	}
 	.main .title, .main .content{
 		max-width: 400px;
+	}
+
+	.name-holder, .speedbox, .loading{
+		max-width: 1200px;
 	}
 }
