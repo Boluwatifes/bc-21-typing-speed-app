@@ -15,37 +15,92 @@ $(function(){
 	let username = sessionStorage.name || 'Guest';
 
 	$('#name-holder').prepend('<h3> Hi, <span class="green">' + username + ' </span></h3>');
+
 	const typingText = $('#typingText');
+
 	typingText.bind('copy cut paste', (e) => e.preventDefault());
+
+	const calculateSpeed = {
+		calcWPM(words){
+			return Math.round(words.length / 5)
+		},
+		calcNET(words, typed){
+			let wordArr = words.split('');
+			let typedArr = typed.split('');
+			var errors = 0;
+			for(let i = 0; i < typedArr.length; i++){
+				if(typedArr[i] !== words[i]){
+					errors += 1;
+				}
+			}
+			const result = Math.round((typed.length / 5) - errors);
+			return JSON.parse(`{"result": ${result}, "errors": ${errors}}`);
+		}
+	};
+
 	typingText.on('focus', () => {
 		var num = 60;
-		var done;
-		const removeNum = () => {
-			let timeCont = $('#timer span');
-			let copyText = $('#copyText');
-			let nameHolder = $('#name-holder p');
-			num = num === 0 ? 0 : num - 1;
-			if(done === true) return
-			if(num > 20){
-				timeCont.html((num) + 's');
-			}else if(num < 20 && num !== 0){
-				timeCont.css({
-					'color' : 'red'
-				});
-				timeCont.html((num) + 's');
-			}else if(num === 0){
-				done = true;
-				typingText.fadeOut(1000);
+
+		const processResults = () => {
+			const textVal = typingText.val();
+			console.log(textVal);
+			const origText = "One day Jimmy Westfielder was walking home from school and saw a big, brown dog walking behind him. At first he was a bit startled at the fact that the dog was just calmly walking behind him. Jimmy stopped and turned around to face the dog. When Jimmy looked into the dog's eyes he became  Cognizant that the dog meant no harm at all. Jimmy bent down to the dog's level and put one of his hands out. As soon as Jimmy did so the dog began to lick  Jimmy's hand. Jimmy then checked to see if the dog had a collar, which he didn't, and when he didn't find a collar he then said, \"Hello my name is Jimmy.\"";
+			const copyText = $('#copyText');
+			const nameHolder = $('#name-holder p');
+			typingText.fadeOut(1000, () => {
 				copyText.fadeOut(1000);
 				nameHolder.fadeOut(1000, () => {
 					nameHolder.html('Your time is up! Your typing speed is been analyzed by our Algorithm');
-				})
-				timeCont.html((num) + 's');
-				nameHolder.fadeIn(1000, () => {
-					$('#name-holder').after('<div class="loading"><img src="/images/cube.gif" class="img-responsive"/></div>');
+					nameHolder.fadeIn(1000, () => {
+						$('.loading').html('<img src="/images/cube.gif" class="img-responsive"/>').css({ 'display' : 'block' });
+						if(textVal === ''){
+							const returnText = `<div class="results"><p>Hey, it seems you didn't type anything into the textbox. Please try again!</p></div>`;
+							$('.loading').hide();
+							$('#name-holder').after(returnText);
+						}else{
+							const wpm = calculateSpeed.calcWPM(textVal);
+							const nwpm = calculateSpeed.calcNET(origText, textVal);
+							let returnText = `<div class="results">`;
+							returnText += `<h2>Here is your result</h2>`;
+							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> Gross Word Per Minute: </span></div>`;
+							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${wpm} WPM </span></div>`;
+							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> Net Word Per Minute : </span></div>`;
+							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${nwpm.result} NET WPM</span></div>`;
+							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> No. of Errors </span></div>`;
+							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${nwpm.errors} </span></div>`;
+							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> Typing Accuracy : </span></div>`;
+							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> `+ Math.floor((nwpm.result / wpm) * 100) +` %</span></div>`;
+							returnText += `<div class="col-md-12" style="text-align: center; padding: 0; margin-top: 10px;">
+								<span class="btn btn-primary"><a href="/test">Try again</a></span>
+								<span class="btn btn-primary"><a href="/leaderboard">View Leaderboard</a></span>
+								<div class="clear"></div>
+								</div>`;
+							returnText += `<div class="clear"></div>`;
+							returnText += `</div>`;
+							$('.loading').hide();
+							$('#name-holder').after(returnText);
+						}
+					});
 				});
-			}
+			});
 		};
-		setInterval(removeNum, 1000);
+
+		var interval = setInterval(() => {
+			let timeCont = $('#timer span');
+			if(num !== 0){
+				num -= 1;
+				if(num > 20){
+					timeCont.html((num) + 's');
+				}else if(num < 20){
+					timeCont.css({
+						'color' : 'red'
+					});
+					timeCont.html((num) + 's');
+				}
+			}else if(num === 0){
+				clearInterval(interval);
+				processResults();
+			}
+		}, 1000);
 	});
 });
