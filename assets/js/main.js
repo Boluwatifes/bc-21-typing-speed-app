@@ -69,7 +69,7 @@ $(function(){
 							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> No. of Errors </span></div>`;
 							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${nwpm.errors} </span></div>`;
 							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> Typing Accuracy : </span></div>`;
-							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> `+ Math.floor(((wpm - nwpm.errors) / wpm) * 100) +` %</span></div>`;
+							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> `+ Math.floor(((textVal.length - nwpm.errors) / wpm) * 100) +` %</span></div>`;
 							returnText += `<div class="col-md-12" style="text-align: center; padding: 0; margin-top: 10px;">
 								<span class="btn btn-primary"><a href="/test">Try again</a></span>
 								<span class="btn btn-primary"><a href="/leaderboard">View Leaderboard</a></span>
