@@ -39,7 +39,7 @@ $(function(){
 	};
 
 	typingText.on('focus', () => {
-		var num = 10;
+		var num = 60;
 
 		const processResults = () => {
 			const textVal = typingText.val();
