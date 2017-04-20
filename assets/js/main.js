@@ -39,7 +39,7 @@ $(function(){
 	};
 
 	typingText.on('focus', () => {
-		var num = 60;
+		var num = 10;
 
 		const processResults = () => {
 			const textVal = typingText.val();
@@ -60,16 +60,18 @@ $(function(){
 						}else{
 							const wpm = calculateSpeed.calcWPM(textVal);
 							const nwpm = calculateSpeed.calcNET(origText, textVal);
+							const accuracy = Math.floor(((textVal.length - nwpm.errors) / textVal.length) * 100);
+							const netwpm = nwpm.result > 0 ? nwpm.result : 0;
 							let returnText = `<div class="results">`;
 							returnText += `<h2>Here is your result</h2>`;
 							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> Gross Word Per Minute: </span></div>`;
 							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${wpm} WPM </span></div>`;
 							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> Net Word Per Minute : </span></div>`;
-							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> `+ (nwpm.result > 0 ? nwpm.result : 0) +` NET WPM</span></div>`;
+							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${netwpm} NET WPM</span></div>`;
 							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> No. of Errors </span></div>`;
 							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${nwpm.errors} </span></div>`;
 							returnText += `<div class="col-md-6 col-sm-8 col-xs-8 text-right"><span> Typing Accuracy : </span></div>`;
-							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> `+ Math.floor(((textVal.length - nwpm.errors) / textVal.length) * 100) +` %</span></div>`;
+							returnText += `<div class="col-md-6 col-sm-4 col-xs-4 text-left"><span> ${accuracy} %</span></div>`;
 							returnText += `<div class="col-md-12" style="text-align: center; padding: 0; margin-top: 10px;">
 								<span class="btn btn-primary"><a href="/test">Try again</a></span>
 								<span class="btn btn-primary"><a href="/leaderboard">View Leaderboard</a></span>
@@ -77,6 +79,20 @@ $(function(){
 								</div>`;
 							returnText += `<div class="clear"></div>`;
 							returnText += `</div>`;
+							const data =  JSON.parse(`{"name": "${sessionStorage.name}", "wpm": ${wpm}, "accuracy": ${accuracy}, "nwpm": ${netwpm}, "errors": ${nwpm.errors}}`);
+							console.log(data);
+							$.ajax({
+								type: 'POST',
+								url: '/saveUser',
+								data: data,
+								dataType: 'json',
+								success: (result) => {
+									console.log(result);
+								},
+								error: (error) => {
+									console.log(error);
+								}
+							});
 							$('.loading').hide();
 							$('#name-holder').after(returnText);
 						}
