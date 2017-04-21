@@ -32,8 +32,21 @@ app.get('/test', (req, res) => res.sendFile(__dirname + '/test.html'));
 app.get('/leaderboard', (req, res) => {
 	let childRef = ref.child('results');
 	childRef.once('value', (snap) => {
+		let dbData = snap.val();
+		let holdData = [];
+		for(const data in dbData){
+			const temp = {};
+			temp.name = dbData[data].name;
+			temp.wpm = dbData[data].wpm;
+			temp.nwpm = dbData[data].nwpm;
+			temp.errors = dbData[data].errors;
+			temp.accuracy = dbData[data].accuracy;
+			holdData.push(temp);
+		}
+		holdData.sort((a,b) =>{return b.wpm > a.wpm});
+		console.log(holdData);
 		res.render('leaderboard', { 
-		    results: snap.val(),
+		    results: holdData,
 		});
 	});
 });
