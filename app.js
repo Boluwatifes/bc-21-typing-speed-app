@@ -29,6 +29,15 @@ app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
 
 app.get('/test', (req, res) => res.sendFile(__dirname + '/test.html'));
 
+app.get('/leaderboard', (req, res) => {
+	let childRef = ref.child('results');
+	childRef.once('value', (snap) => {
+		res.render('leaderboard', { 
+		    results: snap.val(),
+		});
+	});
+});
+
 app.post('/saveUser', (req, res) => {
 	let newData = req.body;
 	let resRef = ref.child('results');
