@@ -6,7 +6,7 @@ This is a simple NodeJs Application that calculates the Typing Speed of users. T
 # Installations
 To install, run the following commands
 
-$ git clone https://github.com/Boluwatifes/bc-21-typing-speed-app
+$ git clone https://github.com/Boluwatifes/bc-21-typing-speed-app.git
 
 $ npm install
 
