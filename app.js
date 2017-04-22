@@ -55,7 +55,7 @@ app.get('/leaderboard', (req, res) => {
 		let holdData = [];
 
 		// Loop through the data received from the database and save it to the `holdData` variable
-		for(const data in dbData){
+		for (const data in dbData) {
 			const temp = {};
 			temp.name = dbData[data].name;
 			temp.wpm = parseInt(dbData[data].wpm);
@@ -66,7 +66,7 @@ app.get('/leaderboard', (req, res) => {
 		}
 
 		// Sort the data in decending order
-		holdData.sort((a,b) => {
+		holdData.sort((a, b) => {
 			return (b.wpm > a.wpm) ? 1 : ((a.wpm > b.wpm) ? -1 : 0);
 		});
 

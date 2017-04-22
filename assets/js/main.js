@@ -5,9 +5,9 @@ $(function(){
 		e.preventDefault();
 		$('body #error').hide();
 		const name = $('body').find('#name').val();
-		if(name.length < 3) {
+		if (name.length < 3) {
 			$('body .content').prepend('<div class="alert alert-danger" id="error">Name must be longer than 2 characters</div>')
-		}else{
+		} else {
 			// Save user's name to the local sessionStorage
 			sessionStorage.name = name;
 
@@ -53,7 +53,7 @@ $(function(){
 			let wordArr = words.split('');
 			let typedArr = typed.split('');
 			var errors = 0;
-			for(let i = 0; i < typedArr.length; i++) {
+			for (let i = 0; i < typedArr.length; i++) {
 				if(typedArr[i] !== words[i]){
 					errors += 1;
 				}
@@ -63,7 +63,7 @@ $(function(){
 			const result = Math.round((typed.length / 5) - errors);
 
 			// Returns the result as json object
-			return JSON.parse(`{"result": ${result}, "errors": ${errors}}`);
+			return JSON.parse(`{ "result": ${result}, "errors": ${errors} }`);
 		},
 	};
 
@@ -107,11 +107,11 @@ $(function(){
 						$('.loading').html('<img src="/images/cube.gif" class="img-responsive"/>').css({ 'display' : 'block' });
 						
 						// Check to see if the user's input is empty
-						if(textVal === ''){
+						if (textVal === '') {
 							const returnText = `<div class="results"><p>Hey, it seems you didn't type anything into the textbox. Please try again!</p></div>`;
 							$('.loading').hide();
 							$('#name-holder').after(returnText);
-						}else{
+						} else {
 
 							// Call the calculateSpeed function earlier declared to get results
 							const wpm = calculateSpeed.calcWPM(textVal);
@@ -139,7 +139,7 @@ $(function(){
 							returnText += `</div>`;
 
 							// Pass the user's results to the `saveUser` route for storage into the database
-							const data = JSON.parse(`{"name": "${sessionStorage.name}", "wpm": ${wpm}, "accuracy": ${accuracy}, "nwpm": ${netwpm}, "errors": ${nwpm.errors}}`);
+							const data = JSON.parse(`{ "name": "${sessionStorage.name}", "wpm": ${wpm}, "accuracy": ${accuracy}, "nwpm": ${netwpm}, "errors": ${nwpm.errors} }`);
 							$.ajax({
 								type: 'POST',
 								url: '/saveUser',
@@ -165,17 +165,17 @@ $(function(){
 		// Start timer
 		var interval = setInterval(() => {
 			let timeCont = $('#timer span');
-			if(num !== 0) {
+			if (num !== 0) {
 				num -= 1;
-				if(num > 20){
+				if (num > 20) {
 					timeCont.html((num) + 's');
-				}else if(num < 20) {
+				} else if (num < 20) {
 					timeCont.css({
 						'color' : 'red'
 					});
 					timeCont.html((num) + 's');
 				}
-			}else if(num === 0) {
+			} else if (num === 0) {
 
 				// Stops the timer if num reaches 0
 				clearInterval(interval);
